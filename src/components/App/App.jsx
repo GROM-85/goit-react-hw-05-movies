@@ -1,4 +1,3 @@
-// import shortid from 'shortid';
 import React, { useState} from 'react';
 import { Container } from './App.styled';
 import { SearchBar } from 'components/SearchBar';
