@@ -6,7 +6,7 @@ import { object, string} from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { BiSearch } from 'react-icons/bi';
 import { IconContext } from "react-icons";
-import { ReactComponent as SearchIcon } from '../svg/search-icon.svg';
+// import { ReactComponent as SearchIcon } from '../svg/search-icon.svg';
 import { Button } from 'components/Button';
 
 const initialValues = {

@@ -1,4 +1,4 @@
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import React, { Component } from 'react';
 import { Container } from './App.styled';
 import { SearchBar } from 'components/SearchBar';
