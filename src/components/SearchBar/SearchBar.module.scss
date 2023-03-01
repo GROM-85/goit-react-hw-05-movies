@@ -1,0 +1,52 @@
+.searchBar{
+  position:fixed;
+  z-index: 999;
+  background-color: rgb(76, 64, 218);
+  width:100vw;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 4px 2px 15px 6px rgba(66, 68, 90, 1);
+-moz-box-shadow: 4px 2px 15px 6px rgba(66, 68, 90, 1);
+box-shadow: 4px 2px 15px 6px rgba(66, 68, 90, 1);
+
+  &__wrapper{
+    position:relative;
+    display: flex;
+    align-items: center;
+    gap:20px;
+    
+  }
+
+  &__input{
+    padding:8px 35px 8px;
+    padding-left:45px;
+    border:none;
+    border-radius: 4px;
+    font-size: 20px;
+    &:focus{
+      outline:none;
+      border:none;
+      color: rgb(108, 105, 105);
+    }
+  }
+  &__icon{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    border:none;
+    border-right:1px solid rgb(166, 163, 163);
+    padding:5px;
+    padding-left:10px;
+    background-color: transparent;
+    cursor:pointer;
+    left:0;
+    top:0%;
+    color:rgb(108, 105, 105);
+
+   
+  }
+}

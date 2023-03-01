@@ -1,71 +1,45 @@
 import shortid from 'shortid';
 import React, { Component } from 'react';
-import { Form } from 'components/Form';
-import { Contacts } from 'components/Contacts';
-import { Filter } from 'components/Filter/Filter';
 import { Container } from './App.styled';
+import { SearchBar } from 'components/SearchBar';
+import {ImageGallery} from 'components/ImageGallery';
+import { Modal } from 'components/Modal';
+import { LoaderImage } from 'components/LoaderImage';
+
+
 
 export class App extends Component {
   state = {
-    contacts: [],
-    filter: '',
+   query:'',
+   img:'',
+   showModal:false,
   };
 
-  filteredContacts = this.state.contacts;
-
-  handleFormSubmit = contact => {
-    if(this.nameVerification(contact.name)) return ;
-
-    Object.assign(contact, { id: shortid.generate() });
-    this.setState({ contacts: [...this.state.contacts, contact] });
-  };
-
-  deleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
-  };
-
-  setFilter = (e) =>{
-    this.setState({filter: e.target.value});
+  onInputSubmit = (value) => {
+    this.setState({query: value})
   }
 
-  filterContacts = () => {
-    const { filter, contacts } = this.state;
-    const formatedName = filter.trim().toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(formatedName));
-  };
-
-  nameVerification = (name) =>{
-    const {contacts} = this.state;
-    for(let contact of contacts){
-      if(contact.name === name){
-        alert(`${name} is already in contacts!`)
-        return true;
-      } 
-    }
+  onToggleModal = (img) => {
+    console.log("modal is toggled")
+    this.setState(({showModal}) => ({
+      showModal:!showModal,
+      img:img,
+    }))
   }
-
   render() {
-    const { filter, contacts } = this.state;
-    const contactToShow = this.filterContacts();
-    console.log("to show",contactToShow)
+
+    const{query,img,showModal} = this.state;
+
     return (
       <Container>
-        <h2>PhoneBook</h2>
-        <Form handleFormSubmit={this.handleFormSubmit} />
-
-        {contacts.length === 0 ? (
-          <h3>Nothing to show yet!</h3>
-        ) : (
-          <Contacts
-            contacts={contactToShow}
-            title="Contacts"
-            onDelete={this.deleteContact}
-          >
-            <Filter filter={filter} handleInputChange={this.setFilter}/>
-          </Contacts>
-        )}
+        <SearchBar onInputSubmit={this.onInputSubmit}/>
+        <ImageGallery query={query} showModal={this.onToggleModal}/>
+        {showModal && <><Modal onClose={this.onToggleModal}>
+          <img src={img} alt="modal_img" />
+          <LoaderImage/>
+        </Modal>
+        </>
+        }
       </Container>
     );
   }
