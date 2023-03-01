@@ -11,7 +11,6 @@ export const ImageGalleryItem = ({img,largeImg,tags,showModal}) => {
 
 
 ImageGalleryItem.propTypes = {
-  id:PropTypes.string.isRequired,
   img:PropTypes.string.isRequired,
   largeImg:PropTypes.string.isRequired,
   tags:PropTypes.string.isRequired,

@@ -13,9 +13,9 @@ return(
 }
 
 Button.propTypes = {
-    title:PropTypes.string.isRequired,
+    title:PropTypes.string,
     children:PropTypes.node,
     type:PropTypes.string.isRequired,
-    onClick:PropTypes.func.isRequired,
+    onClick:PropTypes.func,
     className:PropTypes.string.isRequired,
   }
