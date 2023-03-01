@@ -42,7 +42,7 @@ export const SearchBar = ({onInputSubmit = ()=>null}) =>{
       alert("Enter search param!");
       return ;
     }
-    onInputSubmit(query)
+    onInputSubmit(query.trim())
     resetForm();
   }
 
