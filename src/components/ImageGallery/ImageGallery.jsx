@@ -25,8 +25,12 @@ export const ImageGallery = ({ query, showModal }) => {
     setIsLoading(true);
     try {
       const data = await getData({ query, page });
-      if (data.hits.length === 0)
+      if (data.hits.length === 0){
         Notiflix.Notify.info('Nothing has been found!');
+        resetToDefaults();
+        return;
+      }
+       
       setHits([...hits, ...data.hits]);
     } catch (error) {
       console.log(error?.message);
@@ -58,7 +62,6 @@ export const ImageGallery = ({ query, showModal }) => {
                 key={id}
                 img={webformatURL}
                 tags={tags}
-                showModal={showModal}
                 largeImg={largeImageURL}
               />
             ))}
@@ -81,5 +84,4 @@ export const ImageGallery = ({ query, showModal }) => {
 
 ImageGallery.propTypes = {
   query: PropTypes.string.isRequired,
-  showModal: PropTypes.func.isRequired,
 };
