@@ -7,7 +7,7 @@ import { Button } from 'components/Button';
 import { Loader } from 'components/Loader/Loader';
 import Notiflix from 'notiflix';
 
-export const ImageGallery = ({ query, showModal }) => {
+export const ImageGallery = ({query}) => {
   const [hits, setHits] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ export const ImageGallery = ({ query, showModal }) => {
     setPage(state => state + 1);
   };
 
-  const updateData = async () => {
+  const updateDataByPage = async () => {
     setIsLoading(true);
     try {
       const data = await getData({ query, page });
@@ -30,8 +30,25 @@ export const ImageGallery = ({ query, showModal }) => {
         resetToDefaults();
         return;
       }
-       
       setHits([...hits, ...data.hits]);
+    } catch (error) {
+      console.log(error?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateDataByQuery = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getData({ query, page: 1});
+      if (data.hits.length === 0){
+        Notiflix.Notify.info('Nothing has been found!');
+        resetToDefaults();
+        return;
+      }
+      
+      setHits([...data.hits]);
     } catch (error) {
       console.log(error?.message);
     } finally {
@@ -41,14 +58,15 @@ export const ImageGallery = ({ query, showModal }) => {
 
   useEffect(() => {
     if (!query) return;
-    resetToDefaults();
-    updateData();
+    setPage(1);
+    updateDataByQuery();
     // eslint-disable-next-line
   }, [query]);
 
+
   useEffect(() => {
     if (page === 1) return;
-    updateData();
+    updateDataByPage();
     // eslint-disable-next-line
   }, [page]);
 
