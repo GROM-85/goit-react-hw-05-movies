@@ -5,7 +5,7 @@ import { ImageGallery } from 'components/ImageGallery';
 import { Modal } from 'components/Modal';
 import { LoaderImage } from 'components/LoaderImage';
 import { useImageContext } from 'components/contexts/ImageContext';
-import { ModalProvider, useModalContext } from 'components/contexts/ModalContext';
+import { ModalProvider} from 'components/contexts/ModalContext';
 
 export const App = () => {
   const [query, setQuery] = useState('');
