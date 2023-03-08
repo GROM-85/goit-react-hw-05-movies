@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from 'components/App';
-import { ImageProvider } from 'components/contexts/ImageContext';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ImageProvider>
+  // <React.StrictMode>
+    <BrowserRouter >
       <App />
-    </ImageProvider>
-  </React.StrictMode>
+    </BrowserRouter>
+  // </React.StrictMode>
 );

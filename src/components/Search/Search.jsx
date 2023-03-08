@@ -1,12 +1,12 @@
 import React from 'react';
-import css from './SearchBar.module.scss';
+import css from './Search.module.scss';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { object, string} from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { BiSearch } from 'react-icons/bi';
-import { IconContext } from "react-icons";
-// import { ReactComponent as SearchIcon } from '../svg/search-icon.svg';
+// import { BiSearch } from 'react-icons/bi';
+// import { IconContext } from "react-icons";
+import { ReactComponent as SearchIcon } from '../svg/search-icon.svg';
 import { Button } from 'components/Button';
 
 const initialValues = {
@@ -32,8 +32,7 @@ const FormError = ({ name }) => {
   );
 };
 
-
-export const SearchBar = ({onInputSubmit = ()=>null}) =>{
+export const Search = ({setQuery = ()=>null}) =>{
 
   const handleSubmit = (values,actions) =>{
     const {resetForm} = actions;
@@ -42,34 +41,27 @@ export const SearchBar = ({onInputSubmit = ()=>null}) =>{
       alert("Enter search param!");
       return ;
     }
-    onInputSubmit(query.trim())
+    setQuery({query: query.trim()})
     resetForm();
   }
 
   return (
-    <div className={css.searchBar}>
+    <div className={css.search}>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form autoComplete="off" className={css.searchBar__wrapper}>
-          {/* <SearchIcon width="20" heigth='20' fill='red'/> */}
-          {/* <img src={} alt="icon"/> */}
-          <Button className={css.searchBar__icon} type='submit'>
-            <IconContext.Provider
-              value={{ color: 'darkgray', className: 'global-class-name' ,size:'1.5em'}}
-            >
-                <BiSearch />
-            </IconContext.Provider>
-            
+        <Form autoComplete="off" className={css.search__wrapper}>
+          <Button className={css.search__icon} type='submit'>
+            <SearchIcon width="20" heigth='20' fill='black'/>
           </Button>
 
           <Field
-            className={css.searchBar__input}
+            className={css.search__input}
             name="query"
             type="text"
-            placeholder="Search..."
+            placeholder="Search the movies..."
           />
           <FormError name="query" />
         </Form>
@@ -81,6 +73,6 @@ export const SearchBar = ({onInputSubmit = ()=>null}) =>{
 
 
 
-SearchBar.propTypes = {
-  onInputSubmit:PropTypes.func.isRequired,
+Search.propTypes = {
+  setQuery:PropTypes.func.isRequired,
 }
