@@ -23,7 +23,6 @@ export const getMovies = async ({query='',endpoint=''} = {}) => {
 };
 
 export const getMovieDetail = async ({searchBy='',id=''} = {}) => {
-  // console.log('searchBy',searchBy)
   try {
     const response = await axios.get(`movie/${id}${searchBy}?` + new URLSearchParams({
         api_key: API_KEY,
