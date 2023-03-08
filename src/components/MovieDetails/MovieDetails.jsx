@@ -39,7 +39,7 @@ export const MovieDetail = () => {
         </div>
       ) : (
         <div className={css.movie__detail} key={movie?.id}>
-          <Link className={css.movie__detail__btn} to={savedNavigate.current}>Back</Link>
+          <Link className={css.movie__detail__btn} to={savedNavigate.current ?? '/'}>Back</Link>
           <div className={css.movie__detail__img}>
             <img
               src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
