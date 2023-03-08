@@ -18,6 +18,7 @@ const Cast = () => {
 
   useEffect(() => {
     fetchCast();
+    // eslint-disable-next-line
   },[id])
   
   return (
