@@ -1,7 +1,7 @@
 import css from './MovieGalleryItem.module.scss';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { handleDeleteFromFirebase, handleUpdateFirebase, retreiveUserFirebaseDB } from 'AppFirebase/firebase';
+import { handleDeleteFromFirebase, handleUpdateFirebase} from 'AppFirebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Skeleton, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';

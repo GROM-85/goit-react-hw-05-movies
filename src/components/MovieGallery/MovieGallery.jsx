@@ -1,7 +1,7 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { MovieGalleryItem } from 'components/MovieGalleryItem';
 import css from './MovieGallery.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import * as movieOperations from 'redux/Movies/moviesOperaiton';
 
 export const MovieGallery = () => {
