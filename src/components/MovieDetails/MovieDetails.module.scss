@@ -15,12 +15,29 @@
             background-color: black;
             transition: all .25s ease-in-out;
         }
-       
-        
     }
     &__img{
-        overflow: hidden;
-        margin-top: 20px;
+        border-radius: 10px;
+        width: 260px;
+        @media screen and (min-width:480px) {
+            width:360px;
+        }
         
+    }
+    &__container{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap:30px;
+        padding:20px 0 ;
+
+        @media screen and (min-width:768px) {
+            flex-direction: row;
+        }
+    }
+    &__nav{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }

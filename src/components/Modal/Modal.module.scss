@@ -4,7 +4,8 @@
     left:0;
     width:100vw;
     height:100vh;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(252, 89, 132, 1);
+    background-image: linear-gradient(90deg, rgba(252, 89, 132, 1) 0%, rgba(119, 35, 57, 1) 100%);
 }
 
 .modal__content{
@@ -14,9 +15,10 @@
     transform:translate(-50%,-50%);
     min-height: 500px;
     max-width: 1000px;
-    width:100%;
+    width:400px;
     padding:12px;
     border-radius: 4px;
+    opacity:0.3;
     background-color: rgb(161, 158, 158);
 
     display: flex;

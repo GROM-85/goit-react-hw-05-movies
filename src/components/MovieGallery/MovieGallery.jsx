@@ -1,39 +1,21 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import { MovieGalleryItem } from 'components/MovieGalleryItem';
 import css from './MovieGallery.module.scss';
-import { getMovies,END_POINTS } from 'utils/ApiService/ApiService';
-import Notiflix from 'notiflix';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+// import * as movieOperations from 'redux/Movies/moviesOperaiton';
 
 export const MovieGallery = () => {
-  const [movies,setMovies] = useState([]);
-  // const [isLoading,setIsLoading] = useState(false);
+  // const dispatch = useDispatch();
+  const movies = useSelector(state=>state.movies.trendingMovies);
+  const favoriteMovies = useSelector(state=>state.movies.favoriteMovies);
 
-  const updateMovies = async() =>{
-    
-    try {
-      const {results} = await getMovies({endpoint:END_POINTS.trend});
-      // console.log(results)
-      if(results.length === 0){
-        Notiflix.Notify.info('Nothing has been found!');
-        return;
-      }
-      setMovies([...movies,...results]);
-
-    } catch (error) {
-      console.log(error.message)
-  }
-}
-
-  useEffect(() => {
-    updateMovies();
-    // eslint-disable-next-line
-  },[])
+  // useEffect(() => {
+  //   // dispatch(movieOperations.fetchTrendingMovies())
+  // },[dispatch]);
 
   return (
     <>
-      {movies.length !== 0 && (
+      {movies.length > 0  && (
         <>
           <ul className={css.gallery}>
             {movies.map(({ id, title,poster_path,vote_average}) => (
@@ -42,7 +24,8 @@ export const MovieGallery = () => {
                 id={id}
                 img={poster_path}
                 title={title}
-                rating={vote_average}
+                rating={vote_average.toFixed(1)}
+                isFavorite={favoriteMovies.some(movie => movie.id === id)}
               />
             )) }
           </ul>

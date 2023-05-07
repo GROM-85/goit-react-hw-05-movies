@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-export const Button = ({title,children,onClick,type,className}) =>{
+export const Button = ({children,onClick,type,className,title}) =>{
 return(
     <button type={type} onClick={onClick} className={className}>
         {title}
